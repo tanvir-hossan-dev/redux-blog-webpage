@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Allcard } from "../../Redux/Actions";
 
 const Cards = ({ data }) => {
+  console.log(data);
   const dispatch = useDispatch();
   const handleClear = () => {
     dispatch(Allcard());
