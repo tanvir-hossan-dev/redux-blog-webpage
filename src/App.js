@@ -8,12 +8,20 @@ import Searchbar from "./Components/Searchbar";
 
 function App() {
   const data = useSelector((item) => item.cardReducer.carts);
-  console.log(data);
-  const [search, setSearch] = useState([]);
+  const [search, setSearch] = useState("");
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    console.log(search);
   };
+
+  const searchData = (pro) => {
+    return pro.filter(
+      (item) =>
+        item.name.toLowerCase().includes(search) ||
+        item.description.toLowerCase().includes(search) ||
+        item.category.toLowerCase().includes(search)
+    );
+  };
+
   return (
     <div>
       <Navbar />
@@ -21,7 +29,7 @@ function App() {
         <Searchbar handleSearch={handleSearch} search={search} />
         <div class="relative max-w-7xl mx-auto">
           <Header />
-          <Cards data={data} />
+          <Cards data={searchData(data)} />
         </div>
       </section>
       <Footer />
